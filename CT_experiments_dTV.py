@@ -1,4 +1,3 @@
-from Utils import circle_mask
 import astra
 import h5py
 
@@ -8,7 +7,7 @@ f1 = h5py.File(filename, 'r+')
 sino_Co = np.array(f1['sino_Co'])
 sino_Co_1 = sino_Co[:, :, 0]
 
-def recon_astra(sinogram, center, angles=None, ratio=1.0, method="FBP", num_iter=1, win="hann", pad=0):
+def recon_astra(sinogram, center, angles=None, method="FBP", num_iter=1, win="hann", pad=0): #, ratio=1.0):
     # Taken from Vo's code
     """
     Wrapper of reconstruction methods implemented in the astra toolbox package.
@@ -56,8 +55,8 @@ def recon_astra(sinogram, center, angles=None, ratio=1.0, method="FBP", num_iter
     astra.data2d.delete(rec_id)
     if pad > 0:
         rec = rec[pad:-pad, pad:-pad]
-    if not (ratio is None):
-        rec = rec * circle_mask(rec.shape[0], ratio)
+    #if not (ratio is None):
+    #    rec = rec * circle_mask(rec.shape[0], ratio)
     return rec
 
 # computing the reconstruction using FBP
