@@ -1,11 +1,12 @@
-from Utils import *
+from Utils import circle_mask
 import astra
 import h5py
 
-filename = 'Data/Experiment1_XRF.hdf5'
-f1 = h5py.File('Data/Experiment1_XRF.hdf5', 'r+')
+filename = 'Experiment1_XRF.hdf5'
+f1 = h5py.File(filename, 'r+')
 
-Co_sino = np.array(f1['Co_sino'])
+sino_Co = np.array(f1['sino_Co'])
+sino_Co_1 = sino_Co[:, :, 0]
 
 def recon_astra(sinogram, center, angles=None, ratio=1.0, method="FBP", num_iter=1, win="hann", pad=0):
     # Taken from Vo's code
@@ -61,5 +62,5 @@ def recon_astra(sinogram, center, angles=None, ratio=1.0, method="FBP", num_iter
 
 # computing the reconstruction using FBP
 
-recon_astra(Co_sino, center, angles=None)
+recon_astra(Co_sino, center, ratio=None, angles=None)
 
