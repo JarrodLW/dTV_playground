@@ -1,6 +1,7 @@
 import astra
 import h5py
 import numpy as np
+from scipy.ndimage import interpolation
 
 filename = 'Experiment1_XRF.hdf5'
 f1 = h5py.File(filename, 'r+')
