@@ -65,5 +65,5 @@ def recon_astra(sinogram, center, angles=None, method="FBP", num_iter=1, win="ha
 center = 83
 angle_array = np.arange(180) * np.pi/180
 
-recon = recon_astra(sino_Co, center, angles=angle_array)
+recon = recon_astra(sino_Co_1, center, angles=angle_array)
 
