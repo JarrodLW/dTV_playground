@@ -1,5 +1,6 @@
 import astra
 import h5py
+import numpy as np
 
 filename = 'Experiment1_XRF.hdf5'
 f1 = h5py.File(filename, 'r+')
