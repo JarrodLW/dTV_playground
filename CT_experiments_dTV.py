@@ -2,6 +2,7 @@ import astra
 import h5py
 import numpy as np
 from scipy.ndimage import interpolation
+import matplotlib.pyplot as plt
 
 filename = 'Experiment1_XRF.hdf5'
 f1 = h5py.File(filename, 'r+')
@@ -63,8 +64,11 @@ def recon_astra(sinogram, center, angles=None, method="FBP", num_iter=1, win="ha
 
 # computing the reconstruction using FBP
 
-center = 83
-angle_array = np.arange(180) * np.pi/180
+center = 0
+angle_array = 2 * np.pi * np.arange(60) / 60
 
-recon = recon_astra(sino_Co_1, center, angles=angle_array)
+recon = recon_astra(sino_Co_1.T, center, angles=angle_array, num_iter=200)
 
+plt.figure()
+plt.imshow(recon, cmap=plt.cm.gray)
+plt.savefig('test_recon_with_fbp.png')
